@@ -115,6 +115,7 @@ while True:
     print("4) Total budget")
     print("5) Remaining budget")
     print("6) Exit")
+    print("7) Clear all data")
     print("============================")
 
     answer = input("Enter operation number: ")
@@ -133,6 +134,17 @@ while True:
         elif answer == "6":
             print("Thank you for using Expense Tracker!")
             break
+        elif answer == "7":
+            confirm = input("Are you sure you want to clear all data? (yes/no): ")
+            if confirm.lower() == "yes":
+                cursor.execute("DROP TABLE IF EXISTS budget")
+                cursor.execute("DROP TABLE IF EXISTS expenses")
+                conn.commit()
+                print("All data cleared successfully!")
+                print("You can rerun the code to create new data.")
+                break
+            else:
+                print("Data clearing canceled.")
         else:
             print("Invalid operation. Choose 1 to 6.")
 
